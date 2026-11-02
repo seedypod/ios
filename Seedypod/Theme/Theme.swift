@@ -25,9 +25,9 @@ enum Theme {
 
     static func mono(_ size: CGFloat, _ weight: Font.Weight = .regular) -> Font {
         let name = switch weight {
-        case .medium, .semibold, .bold: "IBMPlexMono-Medium"
+        case .medium, .semibold, .bold: "IBMPlexMono-Medm"
         case .light: "IBMPlexMono-Light"
-        default: "IBMPlexMono-Regular"
+        default: "IBMPlexMono"
         }
         return .custom(name, size: size)
     }
