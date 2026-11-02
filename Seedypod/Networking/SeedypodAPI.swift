@@ -13,7 +13,7 @@ protocol SeedypodAPI: Sendable {
     func stopPump() async throws -> ActuatorState
 
     func markHarvested(slot: Int) async throws -> Pod
-    func setPodStatus(slot: Int, status: PodStatus) async throws -> Pod
+    func updatePod(slot: Int, _ patch: PodPatch) async throws -> Pod
     func acknowledgeAlert(id: Int) async throws
 }
 

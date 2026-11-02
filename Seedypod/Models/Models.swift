@@ -133,6 +133,33 @@ struct CoreAlert: Codable, Sendable, Equatable, Identifiable {
     let dismissedAt: String?
 }
 
+/// A change to one pod (`grow.updatePod`): only the fields that are set are sent,
+/// and a plant or planting date set to `.some(nil)` is cleared.
+struct PodPatch: Equatable, Sendable {
+    var plant: String??
+    var plantedAt: String??
+    var status: PodStatus?
+    var notes: String?
+
+    static func status(_ status: PodStatus) -> PodPatch { PodPatch(status: status) }
+
+    /// Sown today: the crop, the date (the unit's `YYYY-MM-DD`), seeded, and no notes.
+    static func plant(_ name: String, on day: Date = Date(), calendar: Calendar = .current) -> PodPatch {
+        let c = calendar.dateComponents([.year, .month, .day], from: day)
+        let date = String(format: "%04d-%02d-%02d", c.year ?? 0, c.month ?? 0, c.day ?? 0)
+        return PodPatch(plant: .some(name), plantedAt: .some(date), status: .seeded, notes: "")
+    }
+
+    /// Pulled out: nothing growing, nothing planted.
+    static let clear = PodPatch(plant: .some(nil), plantedAt: .some(nil), status: .empty, notes: "")
+
+    func applied(to pod: Pod, at stamp: String) -> Pod {
+        let status = status ?? pod.status
+        return Pod(slot: pod.slot, plant: plant ?? pod.plant, plantedAt: plantedAt ?? pod.plantedAt, status: status, notes: notes ?? pod.notes,
+                   updatedAt: stamp, statusSince: status == pod.status ? pod.statusSince : stamp, lastHarvestAt: pod.lastHarvestAt)
+    }
+}
+
 /// Everything Home shows, fetched in one batched request.
 struct HomeSnapshot: Sendable, Equatable {
     var pods: [Pod]

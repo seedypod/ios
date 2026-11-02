@@ -71,8 +71,8 @@ final class CoreClient: SeedypodAPI {
         try await mutate("grow.markHarvested", Slot(slot: slot))
     }
 
-    func setPodStatus(slot: Int, status: PodStatus) async throws -> Pod {
-        try await mutate("grow.updatePod", PodPatch(slot: slot, status: status))
+    func updatePod(slot: Int, _ patch: PodPatch) async throws -> Pod {
+        try await mutate("grow.updatePod", PodUpdate(slot: slot, patch: patch))
     }
 
     func acknowledgeAlert(id: Int) async throws {
@@ -86,7 +86,21 @@ final class CoreClient: SeedypodAPI {
     private struct LightInput: Encodable, Sendable { let on: Bool?; let level: Double? }
     private struct PumpRun: Encodable, Sendable { let durationS: Int }
     private struct Slot: Encodable, Sendable { let slot: Int }
-    private struct PodPatch: Encodable, Sendable { let slot: Int; let status: PodStatus }
+    struct PodUpdate: Encodable, Sendable {
+        let slot: Int
+        let patch: PodPatch
+        enum Keys: String, CodingKey { case slot, plant, plantedAt, status, notes }
+
+        // Synthesised Encodable drops nils; core needs an explicit null to clear a plant.
+        func encode(to encoder: any Encoder) throws {
+            var c = encoder.container(keyedBy: Keys.self)
+            try c.encode(slot, forKey: .slot)
+            if let plant = patch.plant { try c.encode(plant, forKey: .plant) }
+            if let plantedAt = patch.plantedAt { try c.encode(plantedAt, forKey: .plantedAt) }
+            try c.encodeIfPresent(patch.status, forKey: .status)
+            try c.encodeIfPresent(patch.notes, forKey: .notes)
+        }
+    }
     private struct AlertID: Encodable, Sendable { let id: Int }
 
     // MARK: - tRPC Transport

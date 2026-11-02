@@ -99,8 +99,8 @@ final class HomeStore {
         await act { _ = try await $0.markHarvested(slot: slot) }
     }
 
-    func setPodStatus(_ slot: Int, _ status: PodStatus) async {
-        await act { _ = try await $0.setPodStatus(slot: slot, status: status) }
+    func updatePod(_ slot: Int, _ patch: PodPatch) async {
+        await act { _ = try await $0.updatePod(slot: slot, patch) }
     }
 
     func acknowledge(_ alert: CoreAlert) async {
