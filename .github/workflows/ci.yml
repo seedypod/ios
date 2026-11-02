@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [dev, main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: >
+          xcodebuild build
+          -project Seedypod.xcodeproj
+          -scheme Seedypod
+          -destination 'generic/platform=iOS'
+          CODE_SIGNING_ALLOWED=NO
+          SWIFT_TREAT_WARNINGS_AS_ERRORS=YES
+          -quiet
+
+      - name: Unit tests
+        run: |
+          SIM=$(xcrun simctl list devices available --json | python3 -c '
+          import json, sys
+          devices = json.load(sys.stdin)["devices"]
+          ids = [d["udid"] for runtime, group in sorted(devices.items(), reverse=True)
+                 if ".iOS-" in runtime and int(runtime.split(".iOS-")[1].split("-")[0]) >= 26
+                 for d in group if d["name"].startswith("iPhone")]
+          if not ids: sys.exit("No iOS 26+ iPhone simulator installed")
+          print(ids[0])')
+          xcodebuild test -project Seedypod.xcodeproj -scheme Seedypod \
+            -destination "platform=iOS Simulator,id=$SIM" \
+            CODE_SIGNING_ALLOWED=NO SWIFT_TREAT_WARNINGS_AS_ERRORS=YES -quiet
+
+  lint:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install swiftlint
+      - run: swiftlint --strict
