@@ -41,7 +41,7 @@ struct SettingsView: View {
                     } header: {
                         Text("API key")
                     } footer: {
-                        Text("Only needed when the unit has one set under Settings › Security on its web UI. It's kept in this iPhone's Keychain.")
+                        Text("Only needed when the unit has one set under Settings › API access on its web UI. It's kept in this iPhone's Keychain.")
                     }
                 }
 
