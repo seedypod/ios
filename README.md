@@ -4,6 +4,11 @@ Your Gardyn tower in 3D, run from your own network. The app talks straight to
 [seedypod core](https://github.com/seedypod/core) on your LAN. It has no
 account, no cloud and no telemetry.
 
+<p align="center">
+  <img src="docs/screenshots/home.png" width="300" alt="Home: the tower in 3D on day 19, ready pods flagged" />
+  <img src="docs/screenshots/pod.png" width="300" alt="A picked pod: Arugula, ready to harvest, with its harvest window" />
+</p>
+
 - **Home is the tower:** every pod colored by how it's doing, the plants sized
   by how far along they are, the tank showing its level and the light bars
   glowing at their brightness. Tap a pod for what's in it, where it is in its
