@@ -4,6 +4,11 @@ import SwiftUI
 struct SeedypodApp: App {
     @State private var connection = Connection()
 
+    init() {
+        PodComponent.registerComponent()
+        PartComponent.registerComponent()
+    }
+
     var body: some Scene {
         WindowGroup {
             RootView()
