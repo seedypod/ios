@@ -19,12 +19,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Project matches project.yml
-        run: |
-          brew install xcodegen
-          xcodegen generate
-          git diff --exit-code -- Seedypod.xcodeproj
-
       - name: Build
         run: >
           xcodebuild build

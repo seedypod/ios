@@ -22,7 +22,7 @@ Requires Xcode 26+ and [XcodeGen](https://github.com/yonaskolb/XcodeGen).
 
 ```sh
 brew install xcodegen
-xcodegen generate          # after adding or moving files; CI checks the project is current
+xcodegen generate          # after adding or moving files; commit the regenerated project
 open Seedypod.xcodeproj
 ```
 
