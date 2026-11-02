@@ -19,9 +19,15 @@ struct HomeView: View {
         let pods = snapshot.map { TowerPod.join($0) } ?? []
         ZStack {
             Theme.app.ignoresSafeArea()
-            PodGrid(pods: pods, selected: $selected)
-                .padding(.top, 130)
-                .padding(.bottom, 110)
+            if pods.isEmpty {
+                Color.clear
+            } else {
+                TowerView(pods: pods, waterPct: snapshot?.reading(.waterLevelPct)?.value, lightLevel: snapshot?.light.map { $0.on ? $0.level : 0 } ?? 0,
+                          pumpOn: snapshot?.pump?.on == true, selected: $selected) { part in
+                    panel = part == .light ? .light : .water
+                }
+                .ignoresSafeArea()
+            }
 
             VStack(spacing: 12) {
                 header(snapshot, pods)
@@ -152,28 +158,6 @@ extension PodShown {
         case .growing: Theme.podOK
         case .seeded: Theme.text3
         case .empty: Theme.podEmpty
-        }
-    }
-}
-
-/// The tower as a grid of pods, top row first: the stand-in until the 3D view loads, and where it can't.
-struct PodGrid: View {
-    let pods: [TowerPod]
-    @Binding var selected: Int?
-
-    var body: some View {
-        let columns = pods.count > 16 ? 3 : 2
-        LazyVGrid(columns: Array(repeating: GridItem(.fixed(44), spacing: 22), count: columns), spacing: 10) {
-            ForEach(pods) { pod in
-                Button { selected = selected == pod.slot ? nil : pod.slot } label: {
-                    Circle()
-                        .fill(pod.shown.color.opacity(pod.status == .empty ? 0.35 : 1))
-                        .frame(width: 22, height: 22)
-                        .overlay(Circle().strokeBorder(Theme.text1, lineWidth: selected == pod.slot ? 2 : 0).padding(-4))
-                        .frame(width: 44, height: 30)
-                }
-                .accessibilityLabel("Pod \(pod.slot): \(pod.plant ?? "empty"), \(pod.shown.label)")
-            }
         }
     }
 }
