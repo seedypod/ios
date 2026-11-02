@@ -1,0 +1,60 @@
+name: Seedypod
+options:
+  bundleIdPrefix: com.jonathanng.seedypod
+  deploymentTarget:
+    iOS: "26.0"
+  xcodeVersion: "26"
+  createIntermediateGroups: true
+  defaultConfig: Debug
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    GENERATE_INFOPLIST_FILE: true
+    INFOPLIST_KEY_UILaunchScreen_Generation: true
+    INFOPLIST_KEY_CFBundleDisplayName: seedypod
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: 1
+    SWIFT_STRICT_CONCURRENCY: complete
+    ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: NO
+    ENABLE_USER_SCRIPT_SANDBOXING: false
+
+targets:
+  Seedypod:
+    type: application
+    platform: iOS
+    sources:
+      - path: Seedypod
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.jonathanng.seedypod
+        INFOPLIST_FILE: Seedypod/Info.plist
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: true
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+        INFOPLIST_KEY_NSLocalNetworkUsageDescription: "seedypod finds your Gardyn on your network and talks to it directly. Nothing goes through the internet."
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        TARGETED_DEVICE_FAMILY: "1,2"
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ZUR2343J7S
+        PRODUCT_NAME: Seedypod
+
+  SeedypodTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: SeedypodTests
+    dependencies:
+      - target: Seedypod
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.jonathanng.seedypod.tests
+
+schemes:
+  Seedypod:
+    build:
+      targets:
+        Seedypod: all
+    test:
+      targets:
+        - SeedypodTests

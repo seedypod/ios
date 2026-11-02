@@ -1,0 +1,24 @@
+# Xcode
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+*.xcuserstate
+
+# Swift Package Manager
+.build/
+Packages/
+
+# Build artifacts
+build/
+
+# Node (semantic-release)
+node_modules/
+
+# Misc
+.DS_Store
+*.swp
+*~
