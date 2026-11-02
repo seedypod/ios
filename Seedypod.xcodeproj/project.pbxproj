@@ -1,0 +1,570 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		22F8DBE205023868A8792627 /* HomeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEC98BAA1ACF5307DC0DFA3 /* HomeStore.swift */; };
+		28D0BEC2D61BB8327DCC2ACC /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E73F06BC5537F1B089D03B /* Models.swift */; };
+		2E1D94079D312C6A6DD0819E /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F22736B43B99DB1430095CA /* Connection.swift */; };
+		3837205658B15B3EB410F187 /* UnitDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF92A9AFE89AD71EE7A834E /* UnitDiscovery.swift */; };
+		3D7F784E4D4CF202E06532BA /* SeedypodAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178A92E9855FBB31454E2F49 /* SeedypodAPI.swift */; };
+		438FEEDC23E039921D7A6F43 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71C6C36E51AE138D455415 /* Theme.swift */; };
+		4C9D53598A1B42A40033D675 /* IBMPlexMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FADC5B23C0B156DD1791B10 /* IBMPlexMono-Medium.ttf */; };
+		56AF1D94A5FB936B787B5528 /* Panels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85470ED5F4F3C4EA77483086 /* Panels.swift */; };
+		59FD9AB51238AEBCF21BA11B /* IBMPlexMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7ED79FB8BCF818FE175C94F9 /* IBMPlexMono-Light.ttf */; };
+		6250C011980C4C40C17C0A5E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6549A4D917DEAE32F3774540 /* SettingsView.swift */; };
+		63439CD0E388205A78C96B27 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662CDEC6325BF4C083FE3F7D /* HomeView.swift */; };
+		7C965F88BEA873B4D754BE9E /* AppLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08703882D194C690E4E83609 /* AppLogicTests.swift */; };
+		95F1B9D174958C8AB06143D2 /* ConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9402F3881AE0BFD81EE5540 /* ConnectView.swift */; };
+		99907476ADF04C093A8BCC30 /* IBMPlexMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B81BB39394FB573BC0E7D983 /* IBMPlexMono-Regular.ttf */; };
+		A09689224FBA6AE9721CEDC9 /* EventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927E7739E51DE9852B8D302B /* EventStream.swift */; };
+		AD397427ACD7BA8439FCA424 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6D8475C2A61CD6FE39AD8F1 /* Assets.xcassets */; };
+		B51E91031B6F8DB834829C36 /* DemoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF847986F8ADA5AF2C3011F5 /* DemoClient.swift */; };
+		BE961FA3E5926FFEAFF800FC /* PodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C71DC67FD54C6C02FE26D8 /* PodView.swift */; };
+		D26E1AE1226A2B22DF623170 /* CoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F562E2F69A2562F677161921 /* CoreClient.swift */; };
+		E93A96DEA1D1BC34709A0042 /* CoreClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6D807A37FCF29E77E55EEE /* CoreClientTests.swift */; };
+		EE6B9E17E9F67708918B4B5C /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = E496FD5262A7A4157C4D03B2 /* OFL.txt */; };
+		FD201F7801CE53357410CE15 /* SeedypodApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A16F90BF2608213B7DE07B7 /* SeedypodApp.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DB3992988D2A45B8DBEB2199 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C69B90B4ACC0286396CF4C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6797D232164FB85E58E4ACA8;
+			remoteInfo = Seedypod;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		08703882D194C690E4E83609 /* AppLogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogicTests.swift; sourceTree = "<group>"; };
+		0FADC5B23C0B156DD1791B10 /* IBMPlexMono-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Medium.ttf"; sourceTree = "<group>"; };
+		160AC78CDC6A9203DBA1ADAB /* Seedypod.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Seedypod.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		178A92E9855FBB31454E2F49 /* SeedypodAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedypodAPI.swift; sourceTree = "<group>"; };
+		1B71C6C36E51AE138D455415 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		2A16F90BF2608213B7DE07B7 /* SeedypodApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedypodApp.swift; sourceTree = "<group>"; };
+		2E6D807A37FCF29E77E55EEE /* CoreClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreClientTests.swift; sourceTree = "<group>"; };
+		3DF92A9AFE89AD71EE7A834E /* UnitDiscovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitDiscovery.swift; sourceTree = "<group>"; };
+		5DEC0542C88AEA226C4CBFA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6549A4D917DEAE32F3774540 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		662CDEC6325BF4C083FE3F7D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		70C71DC67FD54C6C02FE26D8 /* PodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodView.swift; sourceTree = "<group>"; };
+		7ED79FB8BCF818FE175C94F9 /* IBMPlexMono-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Light.ttf"; sourceTree = "<group>"; };
+		85470ED5F4F3C4EA77483086 /* Panels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panels.swift; sourceTree = "<group>"; };
+		89E73F06BC5537F1B089D03B /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		8F22736B43B99DB1430095CA /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		927E7739E51DE9852B8D302B /* EventStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStream.swift; sourceTree = "<group>"; };
+		938CCE68AC2B282B2EFC857F /* SeedypodTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SeedypodTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B81BB39394FB573BC0E7D983 /* IBMPlexMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexMono-Regular.ttf"; sourceTree = "<group>"; };
+		BAEC98BAA1ACF5307DC0DFA3 /* HomeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStore.swift; sourceTree = "<group>"; };
+		C9402F3881AE0BFD81EE5540 /* ConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectView.swift; sourceTree = "<group>"; };
+		CF847986F8ADA5AF2C3011F5 /* DemoClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoClient.swift; sourceTree = "<group>"; };
+		D6D8475C2A61CD6FE39AD8F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E496FD5262A7A4157C4D03B2 /* OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		F562E2F69A2562F677161921 /* CoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreClient.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		2ABAB3B2DE2E58348433DD66 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8F22736B43B99DB1430095CA /* Connection.swift */,
+				927E7739E51DE9852B8D302B /* EventStream.swift */,
+				BAEC98BAA1ACF5307DC0DFA3 /* HomeStore.swift */,
+				3DF92A9AFE89AD71EE7A834E /* UnitDiscovery.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2C0341E6AB66FB0ABE652694 /* Seedypod */ = {
+			isa = PBXGroup;
+			children = (
+				D6D8475C2A61CD6FE39AD8F1 /* Assets.xcassets */,
+				5DEC0542C88AEA226C4CBFA0 /* Info.plist */,
+				6A107DBCBC7876259E11DE5D /* App */,
+				B8E4E3BA9C0965AE33C0D45A /* Models */,
+				5F6E8CA683B0BD79AE76007B /* Networking */,
+				3BA90AD2DBC86110AD3736DF /* Resources */,
+				2ABAB3B2DE2E58348433DD66 /* Services */,
+				3C077FD874126920BCF71504 /* Theme */,
+				43ED73536D50FB3F2A4B9277 /* Views */,
+			);
+			path = Seedypod;
+			sourceTree = "<group>";
+		};
+		3BA90AD2DBC86110AD3736DF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F3394B70B351CA9F92B596AC /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3C077FD874126920BCF71504 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				1B71C6C36E51AE138D455415 /* Theme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		43ED73536D50FB3F2A4B9277 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C9402F3881AE0BFD81EE5540 /* ConnectView.swift */,
+				662CDEC6325BF4C083FE3F7D /* HomeView.swift */,
+				85470ED5F4F3C4EA77483086 /* Panels.swift */,
+				6549A4D917DEAE32F3774540 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		56494B067D0A92F39DF5B9A2 /* SeedypodTests */ = {
+			isa = PBXGroup;
+			children = (
+				08703882D194C690E4E83609 /* AppLogicTests.swift */,
+				2E6D807A37FCF29E77E55EEE /* CoreClientTests.swift */,
+			);
+			path = SeedypodTests;
+			sourceTree = "<group>";
+		};
+		5F6E8CA683B0BD79AE76007B /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				F562E2F69A2562F677161921 /* CoreClient.swift */,
+				CF847986F8ADA5AF2C3011F5 /* DemoClient.swift */,
+				178A92E9855FBB31454E2F49 /* SeedypodAPI.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		6A107DBCBC7876259E11DE5D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2A16F90BF2608213B7DE07B7 /* SeedypodApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B8E24DCB0DE35E410D288DAC = {
+			isa = PBXGroup;
+			children = (
+				2C0341E6AB66FB0ABE652694 /* Seedypod */,
+				56494B067D0A92F39DF5B9A2 /* SeedypodTests */,
+				D6B930BDC68C09537BF7D105 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B8E4E3BA9C0965AE33C0D45A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				89E73F06BC5537F1B089D03B /* Models.swift */,
+				70C71DC67FD54C6C02FE26D8 /* PodView.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D6B930BDC68C09537BF7D105 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				160AC78CDC6A9203DBA1ADAB /* Seedypod.app */,
+				938CCE68AC2B282B2EFC857F /* SeedypodTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F3394B70B351CA9F92B596AC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7ED79FB8BCF818FE175C94F9 /* IBMPlexMono-Light.ttf */,
+				0FADC5B23C0B156DD1791B10 /* IBMPlexMono-Medium.ttf */,
+				B81BB39394FB573BC0E7D983 /* IBMPlexMono-Regular.ttf */,
+				E496FD5262A7A4157C4D03B2 /* OFL.txt */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		416E56578E599CA4861A3B87 /* SeedypodTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6088C93190EC56D1102B4E1 /* Build configuration list for PBXNativeTarget "SeedypodTests" */;
+			buildPhases = (
+				7444ADE70F925AFBF2F42FD9 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6F4439DC4BA045328DDF79AD /* PBXTargetDependency */,
+			);
+			name = SeedypodTests;
+			packageProductDependencies = (
+			);
+			productName = SeedypodTests;
+			productReference = 938CCE68AC2B282B2EFC857F /* SeedypodTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6797D232164FB85E58E4ACA8 /* Seedypod */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC5AC1535654A84CEBD5BCE1 /* Build configuration list for PBXNativeTarget "Seedypod" */;
+			buildPhases = (
+				1C2B1FF44B0A32073B943422 /* Sources */,
+				E9D6F0309EA8173D94DA2289 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Seedypod;
+			packageProductDependencies = (
+			);
+			productName = Seedypod;
+			productReference = 160AC78CDC6A9203DBA1ADAB /* Seedypod.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3C69B90B4ACC0286396CF4C3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					6797D232164FB85E58E4ACA8 = {
+						DevelopmentTeam = ZUR2343J7S;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = DEC6D7B8F042EDBBC1836542 /* Build configuration list for PBXProject "Seedypod" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = B8E24DCB0DE35E410D288DAC;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6797D232164FB85E58E4ACA8 /* Seedypod */,
+				416E56578E599CA4861A3B87 /* SeedypodTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E9D6F0309EA8173D94DA2289 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD397427ACD7BA8439FCA424 /* Assets.xcassets in Resources */,
+				59FD9AB51238AEBCF21BA11B /* IBMPlexMono-Light.ttf in Resources */,
+				4C9D53598A1B42A40033D675 /* IBMPlexMono-Medium.ttf in Resources */,
+				99907476ADF04C093A8BCC30 /* IBMPlexMono-Regular.ttf in Resources */,
+				EE6B9E17E9F67708918B4B5C /* OFL.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1C2B1FF44B0A32073B943422 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95F1B9D174958C8AB06143D2 /* ConnectView.swift in Sources */,
+				2E1D94079D312C6A6DD0819E /* Connection.swift in Sources */,
+				D26E1AE1226A2B22DF623170 /* CoreClient.swift in Sources */,
+				B51E91031B6F8DB834829C36 /* DemoClient.swift in Sources */,
+				A09689224FBA6AE9721CEDC9 /* EventStream.swift in Sources */,
+				22F8DBE205023868A8792627 /* HomeStore.swift in Sources */,
+				63439CD0E388205A78C96B27 /* HomeView.swift in Sources */,
+				28D0BEC2D61BB8327DCC2ACC /* Models.swift in Sources */,
+				56AF1D94A5FB936B787B5528 /* Panels.swift in Sources */,
+				BE961FA3E5926FFEAFF800FC /* PodView.swift in Sources */,
+				3D7F784E4D4CF202E06532BA /* SeedypodAPI.swift in Sources */,
+				FD201F7801CE53357410CE15 /* SeedypodApp.swift in Sources */,
+				6250C011980C4C40C17C0A5E /* SettingsView.swift in Sources */,
+				438FEEDC23E039921D7A6F43 /* Theme.swift in Sources */,
+				3837205658B15B3EB410F187 /* UnitDiscovery.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7444ADE70F925AFBF2F42FD9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C965F88BEA873B4D754BE9E /* AppLogicTests.swift in Sources */,
+				E93A96DEA1D1BC34709A0042 /* CoreClientTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6F4439DC4BA045328DDF79AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6797D232164FB85E58E4ACA8 /* Seedypod */;
+			targetProxy = DB3992988D2A45B8DBEB2199 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		20DE7783F12C56F397BC7227 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZUR2343J7S;
+				INFOPLIST_FILE = Seedypod/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "seedypod finds your Gardyn on your network and talks to it directly. Nothing goes through the internet.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jonathanng.seedypod;
+				PRODUCT_NAME = Seedypod;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6D91868FDCAA3FC49EB8F2A6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = seedypod;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		793F943D6FD130F4810B7015 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jonathanng.seedypod.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Seedypod.app/Seedypod";
+			};
+			name = Debug;
+		};
+		7EC6AA81DF5CC98C6727DF4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = seedypod;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		AF662D1395F155BE944F5740 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jonathanng.seedypod.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Seedypod.app/Seedypod";
+			};
+			name = Release;
+		};
+		D267E594803D701FCDB27636 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZUR2343J7S;
+				INFOPLIST_FILE = Seedypod/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "seedypod finds your Gardyn on your network and talks to it directly. Nothing goes through the internet.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.jonathanng.seedypod;
+				PRODUCT_NAME = Seedypod;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CC5AC1535654A84CEBD5BCE1 /* Build configuration list for PBXNativeTarget "Seedypod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D267E594803D701FCDB27636 /* Debug */,
+				20DE7783F12C56F397BC7227 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D6088C93190EC56D1102B4E1 /* Build configuration list for PBXNativeTarget "SeedypodTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				793F943D6FD130F4810B7015 /* Debug */,
+				AF662D1395F155BE944F5740 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DEC6D7B8F042EDBBC1836542 /* Build configuration list for PBXProject "Seedypod" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EC6AA81DF5CC98C6727DF4C /* Debug */,
+				6D91868FDCAA3FC49EB8F2A6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3C69B90B4ACC0286396CF4C3 /* Project object */;
+}
