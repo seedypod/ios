@@ -11,7 +11,7 @@ struct HomeView: View {
     @State private var panel: Panel?
 
     enum Panel: String, Identifiable {
-        case light, water, alerts, settings
+        case light, water, alerts, settings, pods
         var id: String { rawValue }
     }
 
@@ -33,11 +33,15 @@ struct HomeView: View {
             VStack(spacing: 12) {
                 header(snapshot, pods)
                 Spacer(minLength: 0)
-                if let pick = pods.first(where: { $0.slot == selected }) {
-                    PodCard(pod: pick, store: store) { selected = nil }
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                // Phone-width on an iPad, so the card and readings don't stretch across the tower.
+                Group {
+                    if let pick = pods.first(where: { $0.slot == selected }) {
+                        PodCard(pod: pick, store: store) { selected = nil }
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
+                    }
+                    ReadingsBar(snapshot: snapshot) { panel = $0 }
                 }
-                ReadingsBar(snapshot: snapshot) { panel = $0 }
+                .frame(maxWidth: 520)
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 8)
@@ -58,6 +62,10 @@ struct HomeView: View {
                 case .water: WaterPanel(store: store)
                 case .alerts: AlertsPanel(store: store)
                 case .settings: SettingsView(system: store.system)
+                case .pods: PodList(pods: pods) { slot in
+                    panel = nil
+                    selected = slot
+                }
                 }
             }
             .presentationBackground(Theme.card)
@@ -75,6 +83,10 @@ struct HomeView: View {
                     .font(Theme.mono(28, .medium))
                 Spacer()
                 StatusPill(store: store, name: connection.name)
+                Button { panel = .pods } label: {
+                    Image(systemName: "list.bullet").foregroundStyle(Theme.text2)
+                }
+                .accessibilityLabel("All pods")
                 Button { panel = .alerts } label: {
                     Image(systemName: alerts > 0 ? "bell.badge" : "bell")
                         .symbolRenderingMode(.palette)
@@ -166,4 +178,72 @@ extension PodShown {
         case .empty: Theme.podEmpty
         }
     }
+}
+
+/// Every pod by what it needs, most urgent first: the way to find one by name, and to reach pods with VoiceOver.
+struct PodList: View {
+    let pods: [TowerPod]
+    let pick: (Int) -> Void
+
+    var body: some View {
+        NavigationStack {
+            List {
+                ForEach(PodShown.allCases, id: \.self) { shown in
+                    let group = pods.filter { $0.shown == shown }
+                    if !group.isEmpty {
+                        Section {
+                            ForEach(group) { pod in
+                                Button { pick(pod.slot) } label: { row(pod) }
+                                    .listRowBackground(Theme.app)
+                            }
+                        } header: {
+                            HStack(spacing: 6) {
+                                Circle().fill(shown.color).frame(width: 7, height: 7)
+                                Text("\(shown.label) · \(group.count)")
+                            }
+                            .font(Theme.mono(11))
+                        }
+                    }
+                }
+            }
+            .scrollContentBackground(.hidden)
+            .navigationTitle("Pods")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+
+    private func row(_ pod: TowerPod) -> some View {
+        HStack(spacing: 12) {
+            Text("\(pod.slot)")
+                .font(Theme.mono(12))
+                .foregroundStyle(Theme.text3)
+                .frame(width: 24, alignment: .trailing)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(pod.plant ?? "Empty").foregroundStyle(pod.plant == nil ? Theme.text3 : Theme.text1)
+                if let detail = detail(pod) {
+                    Text(detail).font(.caption).foregroundStyle(Theme.text2).lineLimit(1)
+                }
+            }
+            Spacer()
+            Image(systemName: "chevron.right").font(.caption).foregroundStyle(Theme.text3)
+        }
+        .contentShape(.rect)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("Pod \(pod.slot), \(pod.plant ?? "empty"), \(pod.shown.label)")
+    }
+
+    private func detail(_ pod: TowerPod) -> String? {
+        switch pod.shown {
+        case .attention: return pod.notes.isEmpty ? nil : pod.notes
+        case .empty: return nil
+        default:
+            let age = pod.ageDays.map { "day \(Int($0))" }
+            let due = pod.harvest?.daysToReady.flatMap { $0 > 0 ? "harvest in ~\(max(1, Int($0.rounded()))) d" : nil }
+            return [age, due].compactMap { $0 }.joined(separator: " · ").nilIfEmpty
+        }
+    }
+}
+
+extension String {
+    var nilIfEmpty: String? { isEmpty ? nil : self }
 }
