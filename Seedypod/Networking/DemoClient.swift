@@ -103,10 +103,8 @@ actor DemoClient: SeedypodAPI {
         }
     }
 
-    func setPodStatus(slot: Int, status: PodStatus) async throws -> Pod {
-        try update(slot) { old, stamp in
-            Pod(slot: old.slot, plant: old.plant, plantedAt: old.plantedAt, status: status, notes: status == .attention ? old.notes : "", updatedAt: stamp, statusSince: stamp, lastHarvestAt: old.lastHarvestAt)
-        }
+    func updatePod(slot: Int, _ patch: PodPatch) async throws -> Pod {
+        try update(slot) { old, stamp in patch.applied(to: old, at: stamp) }
     }
 
     func acknowledgeAlert(id: Int) async throws {

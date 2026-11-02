@@ -56,6 +56,8 @@ struct PodCard: View {
     let pod: TowerPod
     let store: HomeStore
     let close: () -> Void
+    @State private var planting = false
+    @State private var clearing = false
 
     var body: some View {
         let shown = pod.shown
@@ -70,6 +72,7 @@ struct PodCard: View {
                         .font(.title3.weight(.medium))
                 }
                 Spacer()
+                if pod.status != .empty { menu }
                 Button(action: close) {
                     Image(systemName: "xmark").font(.system(size: 14, weight: .medium)).foregroundStyle(Theme.text3).padding(4)
                 }
@@ -128,14 +131,160 @@ struct PodCard: View {
             .foregroundStyle(Theme.inverse)
         case .attention:
             Button {
-                Task { await store.setPodStatus(pod.slot, .growing) }
+                Task { await store.updatePod(pod.slot, PodPatch(status: .growing, notes: "")) }
             } label: {
                 Text("It's fine now").frame(maxWidth: .infinity)
             }
             .buttonStyle(.bordered)
+        case .empty:
+            Button {
+                planting = true
+            } label: {
+                Label("Plant this pod", systemImage: "leaf").frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(Theme.podOK)
+            .foregroundStyle(Theme.inverse)
+            .sheet(isPresented: $planting) {
+                PlantSheet(slot: pod.slot) { name in
+                    Task { await store.updatePod(pod.slot, .plant(name)) }
+                }
+                .presentationDetents([.medium, .large])
+                .presentationBackground(Theme.card)
+            }
         default:
             EmptyView()
         }
+    }
+
+    /// The rest of what can happen to a planted pod, without crowding the card.
+    private var menu: some View {
+        Menu {
+            if pod.status != .attention {
+                Button("Needs attention", systemImage: "exclamationmark.triangle") {
+                    Task { await store.updatePod(pod.slot, .status(.attention)) }
+                }
+            }
+            if pod.shown != .ready {
+                Button("Ready to harvest", systemImage: "scissors") {
+                    Task { await store.updatePod(pod.slot, .status(.harvest)) }
+                }
+            }
+            Button("Clear pod", systemImage: "trash", role: .destructive) { clearing = true }
+        } label: {
+            Image(systemName: "ellipsis").font(.system(size: 15, weight: .medium)).foregroundStyle(Theme.text3).frame(width: 30, height: 26)
+        }
+        .accessibilityLabel("More for pod \(pod.slot)")
+        .confirmationDialog("Clear pod \(pod.slot)?", isPresented: $clearing, titleVisibility: .visible) {
+            Button("Clear pod", role: .destructive) { Task { await store.updatePod(pod.slot, .clear) } }
+        } message: {
+            Text("\(pod.plant ?? "The plant") comes off the tower. Its photos and history stay on the unit.")
+        }
+    }
+}
+
+/// What's going in an empty pod: type it, or pick a common crop.
+struct PlantSheet: View {
+    let slot: Int
+    let plant: (String) -> Void
+    @Environment(\.dismiss) private var dismiss
+    @State private var name = ""
+    @FocusState private var focused: Bool
+
+    static let suggestions = ["Butterhead Lettuce", "Genovese Basil", "Thai Basil", "Arugula", "Red Russian Kale", "Swiss Chard",
+                              "Bok Choy", "Spinach", "Mint", "Cilantro", "Dill", "Parsley", "Cherry Tomato", "Jalapeño", "Strawberry"]
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 18) {
+                    TextField("What are you planting?", text: $name)
+                        .focused($focused)
+                        .submitLabel(.done)
+                        .onSubmit(save)
+                        .padding(12)
+                        .background(Theme.app, in: .rect(cornerRadius: 10))
+                        .overlay(RoundedRectangle(cornerRadius: 10).strokeBorder(Theme.line2))
+                    FlowLayout(spacing: 8) {
+                        ForEach(Self.suggestions.filter { name.isEmpty || $0.localizedCaseInsensitiveContains(name) }, id: \.self) { s in
+                            Button(s) { name = s }
+                                .font(.footnote)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 7)
+                                .background(name == s ? Theme.active : Theme.app, in: .capsule)
+                                .overlay(Capsule().strokeBorder(name == s ? Theme.text2 : Theme.line2))
+                                .buttonStyle(.plain)
+                        }
+                    }
+                    Text("It's marked seeded from today; the harvest outlook and reminders count from here.")
+                        .font(.caption)
+                        .foregroundStyle(Theme.text3)
+                }
+                .padding(20)
+            }
+            .navigationTitle("Plant pod \(slot)")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Plant", action: save).disabled(trimmed.isEmpty)
+                }
+            }
+            .onAppear { focused = true }
+        }
+    }
+
+    private var trimmed: String { name.trimmingCharacters(in: .whitespacesAndNewlines) }
+
+    private func save() {
+        guard !trimmed.isEmpty else { return }
+        plant(trimmed)
+        dismiss()
+    }
+}
+
+/// Lays children out in rows, wrapping when a row is full.
+struct FlowLayout: Layout {
+    var spacing: CGFloat = 8
+
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        let rows = arrange(width: proposal.width ?? .infinity, subviews: subviews)
+        return CGSize(width: proposal.width ?? rows.map(\.width).max() ?? 0, height: rows.last.map { $0.y + $0.height } ?? 0)
+    }
+
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        for row in arrange(width: bounds.width, subviews: subviews) {
+            for (index, x) in zip(row.indices, row.xs) {
+                subviews[index].place(at: CGPoint(x: bounds.minX + x, y: bounds.minY + row.y), proposal: .unspecified)
+            }
+        }
+    }
+
+    private struct Row {
+        var indices: [Int] = []
+        var xs: [CGFloat] = []
+        var width: CGFloat = 0
+        var height: CGFloat = 0
+        var y: CGFloat = 0
+    }
+
+    private func arrange(width: CGFloat, subviews: Subviews) -> [Row] {
+        var rows = [Row()]
+        for (i, view) in subviews.enumerated() {
+            let size = view.sizeThatFits(.unspecified)
+            if !rows[rows.count - 1].indices.isEmpty, rows[rows.count - 1].width + spacing + size.width > width {
+                let last = rows[rows.count - 1]
+                rows.append(Row(y: last.y + last.height + spacing))
+            }
+            var row = rows[rows.count - 1]
+            let x = row.indices.isEmpty ? 0 : row.width + spacing
+            row.indices.append(i)
+            row.xs.append(x)
+            row.width = x + size.width
+            row.height = max(row.height, size.height)
+            rows[rows.count - 1] = row
+        }
+        return rows
     }
 }
 

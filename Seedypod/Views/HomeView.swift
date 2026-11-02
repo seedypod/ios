@@ -5,6 +5,7 @@ import SwiftUI
 /// Light, water, alerts and settings open as sheets.
 struct HomeView: View {
     @Environment(Connection.self) private var connection
+    @Environment(\.scenePhase) private var scenePhase
     @State var store: HomeStore
     @State private var selected: Int?
     @State private var panel: Panel?
@@ -45,6 +46,11 @@ struct HomeView: View {
             if store.loading { ProgressView().controlSize(.large) }
         }
         .task { await store.run() }
+        // Back from the background: catch up now rather than at the next event or poll.
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active { Task { await store.refresh() } }
+        }
+        .sensoryFeedback(.selection, trigger: selected)
         .sheet(item: $panel) { p in
             Group {
                 switch p {

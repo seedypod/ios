@@ -125,7 +125,7 @@ import Testing
     @Test func actionsChangeWhatHomeShows() async throws {
         let demo = DemoClient()
         _ = try await demo.markHarvested(slot: 1)
-        _ = try await demo.setPodStatus(slot: 9, status: .growing)
+        _ = try await demo.updatePod(slot: 9, .status(.growing))
         _ = try await demo.setLight(on: false, level: nil)
         _ = try await demo.runPump(seconds: 30)
         let alert = try #require(try await demo.home().alerts.first)
@@ -181,5 +181,47 @@ import Testing
         await store.refresh()
         #expect(store.error == .invalidResponse(statusCode: 503))
         #expect(store.snapshot == nil)
+    }
+}
+
+@Suite struct PodPatchTests {
+    private func json(_ patch: PodPatch) throws -> [String: Any] {
+        let data = try JSONEncoder().encode(CoreClient.PodUpdate(slot: 4, patch: patch))
+        return try #require(try JSONSerialization.jsonObject(with: data) as? [String: Any])
+    }
+
+    @Test func sendsOnlyWhatIsSetAndNullToClear() throws {
+        let status = try json(.status(.attention))
+        #expect(status.keys.sorted() == ["slot", "status"])
+        #expect(status["status"] as? String == "attention")
+
+        let clear = try json(.clear)
+        #expect(clear.keys.sorted() == ["notes", "plant", "plantedAt", "slot", "status"])
+        #expect(clear["plant"] is NSNull && clear["plantedAt"] is NSNull)
+        #expect(clear["status"] as? String == "empty")
+    }
+
+    @Test func plantingIsSeededTodayAsTheUnitWritesDates() throws {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = try #require(TimeZone(identifier: "America/Los_Angeles"))
+        // 23:30 in Los Angeles is already the next day in UTC; the pod was planted on the local day.
+        let late = try #require(ISO.date("2026-11-02T07:30:00Z"))
+        let patch = PodPatch.plant("Thai Basil", on: late, calendar: calendar)
+        #expect(patch.plantedAt == .some("2026-11-01"))
+        #expect(patch.status == .seeded)
+        let body = try json(patch)
+        #expect(body["plant"] as? String == "Thai Basil")
+    }
+
+    @Test func demoAppliesPatches() async throws {
+        let demo = DemoClient()
+        _ = try await demo.updatePod(slot: 25, .plant("Mint"))
+        _ = try await demo.updatePod(slot: 7, .clear)
+        _ = try await demo.updatePod(slot: 8, .status(.attention))
+        let pods = try await demo.home().pods
+        #expect(pods[24].plant == "Mint" && pods[24].status == .seeded && pods[24].plantedAt != nil)
+        #expect(pods[6].plant == nil && pods[6].plantedAt == nil && pods[6].status == .empty)
+        #expect(pods[7].status == .attention && pods[7].plant != nil)
+        #expect(pods[7].statusSince != nil)
     }
 }
